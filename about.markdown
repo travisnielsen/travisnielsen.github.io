@@ -4,15 +4,6 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Travis is a Principal Cloud Solution Architect at Microsoft where he focuses on helping customers accelerate their business transformation efforts through cloud-native application development practices. Prior to joining Microsoft, Travis worked throughout the United States and Europe helping customers in a variety of areas including mobile application development and security.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+![Travis](/media/about/tnielsen.png)

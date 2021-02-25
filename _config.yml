@@ -21,12 +21,15 @@
 title: nielski on Azure
 author: Travis Nielsen
 email: trniel@microsoft.com
+avatar: https://raw.githubusercontent.com/emondek/emondek.github.io/master/images/Ed%20Mondek%20Small.png
 description: >- # this means to ignore newlines until "baseurl:"
   This is Travis Nielsen's technical blog covering all things Azure. The opinions and views expressed in this blog are those of the author and do not necessarily state or reflect those of Microsoft.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://nielski.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: travisnielsen
 github_username:  travisnielsen
+
+markdown: kramdown
 
 # Build settings
 theme: minima
@@ -35,6 +38,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-remote-theme
+  - jekyll-avatar
 
 remote_theme: jekyll/minima
 
@@ -43,6 +47,10 @@ google_analytics: UA-69721722-1
 minima:
   skin: dark
   date_format: "%b %-d, %Y"
+  social_links:
+    twitter: travisnielsen
+    github: travisnielsen
+    linkedin: travisnielsen
 
 # Exclude from processing.
 # The following items will not be processed, by default.
