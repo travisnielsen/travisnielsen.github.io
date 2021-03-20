@@ -9,13 +9,30 @@ About two months ago, Microsoft quietly published a new GitHub repo titled [Micr
 At the heart of the MDE SDK are three NuGet packages: [Microsoft.Data.Encryption.Cryptography][mde-crypto], [Microsoft.Data.Encryption.FileEncryption][mde-file], and [
 Microsoft.Data.Encryption.AzureKeyVaultProvider][mde-keyvault]. In this post, we'll walk through how to all three packages can be used to encrypt senstive columns in a CSV file, push them to Azure SQL Database without decrypting, and view the data from SQL as an authorized user.
 
-## Configuring Encryption Metadata
+## Configuration and Prerequisites
+
+Everything needed demonstrate this is available in the following GitHub repo:
+
+https://github.com/travisnielsen/column-encryption
+
+It includes the following components:
+
+* A common library that extends the MDE SDK to support CSV files and externalized cryptographic metadata
+* A console application for encrypting and decrypting files
+* An Azure Function that loads CSV files and imports records into SQL
+
+Clone the repo locally and follow the [Azure Environment Configuration][ce-setup] steps to deploy the supporting services, configure SQL Always Encrypted, and generate the YAML metadata file. Once completed, encrypting data via an external process, moving it to SQL, and viewing the plaintext as an authorized user is straightforward. 
+
+## Walkthrough: Encrypt with External Process
+
 
 
 
 
 [mde-sdk]: https://github.com/Azure/microsoft-data-encryption-sdk
 [sql-ae]: https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=azuresqldb-current
+[sql-ae-crypto]: https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-cryptography?view=sql-server-ver15#data-encryption-algorithm
 [mde-crypto]: https://www.nuget.org/packages/Microsoft.Data.Encryption.Cryptography
 [mde-file]: https://www.nuget.org/packages/Microsoft.Data.Encryption.FileEncryption
 [mde-keyvault]: https://www.nuget.org/packages/Microsoft.Data.Encryption.AzureKeyVaultProvider
+[ce-setup]: https://github.com/travisnielsen/column-encryption/blob/main/docs/configure-azure.md
