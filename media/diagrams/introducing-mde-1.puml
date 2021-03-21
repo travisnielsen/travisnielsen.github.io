@@ -1,0 +1,93 @@
+@startuml diagram-mde-csv
+
+!define AzurePuml https://raw.githubusercontent.com/travisnielsen/Azure-PlantUML/release/3-0/dist
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Identity/Users.puml
+!includeurl AzurePuml/Identity/AzureActiveDirectory.puml
+!includeurl AzurePuml/Compute/FunctionApps.puml
+!includeurl AzurePuml/Databases/SQLServer.puml
+!includeurl AzurePuml/Storage/StorageAccounts.puml
+!includeurl AzurePuml/Security/KeyVault.puml
+
+
+LAYOUT_LEFT_RIGHT
+
+' Color theme: http://simianuprising.com/wp-content/uploads/2012/08/solarized-reference-horizontal.png
+
+' TITLE: Data Protection for CSV Files
+
+skinparam BackgroundColor #002b36
+skinparam TitleFontColor #eee8d5
+skinparam TitleFontSize 28
+
+skinparam Rectangle {
+    FontColor #eee8d5
+}
+
+skinparam rectangle<<container>> {
+
+    BackgroundColor<<Users>> #073642
+    StereotypeFontColor<<Users>> #eee8d5
+
+    BackgroundColor<<AzureActiveDirectory>> #839496
+    
+    BackgroundColor<<KeyVault>> #073642
+    StereotypeFontColor<<KeyVault>> #eee8d5
+
+    BackgroundColor<<SQLServer>> #073642
+    StereotypeFontColor<<SQLServer>> #eee8d5
+
+    BackgroundColor<<StorageAccounts>> #073642
+    StereotypeFontColor<<StorageAccounts>> #eee8d5
+
+    BackgroundColor<<FunctionApps>> #073642
+    StereotypeFontColor<<FunctionApps>> #eee8d5
+}
+
+' AzureActiveDirectory(aad, "Corprate tenant", "", "MFA\nConditional Access")
+
+rectangle "<size:18><b>Key Vault</b>\n<color:#b58900><$KeyVault></color>\n<i>[Premium: HSM-backed]</i>\n\nAAD-based RBAC" <<KeyVault>> as kv
+' KeyVault(kv, "Key Vault", "Premium: HSM-backed", "Column Master Keys")
+
+rectangle "<size:18><b>Blob Storage</b>\n<color:#2aa198><$StorageAccounts></color>\n<i>[Gen2]</i>\n\nCSV files with encrypted columns" <<StorageAccounts>> as adls
+' StorageAccounts(adls, "Data Lake", "Standard SKU", "Source data")
+
+rectangle "<size:18><b>SQL Import</b>\n<color:#2aa198><$FunctionApps></color>\n<i>[.NET 5 isolated]</i>\n\nBlob trigger w/ SQL bulk import API" <<FunctionApps>> as functions
+' FunctionApps(functions, "SQL Import", ".NET 5 isolated", "Blob trigger w/ SQL bulk import API")
+
+rectangle "<size:18><b>Database</b>\n<color:#2aa198><$SQLServer></color>\n<i>[Always Encrypted]</i>\n\nUserData table" <<SQLServer>> as sql
+' SQLServer(sql, "Database", "UserData", "Always Encrypted")
+
+
+Container(dataProtection, "<size:20><color:#859900>Data Protection", "MDE SDK") {
+    rectangle "<size:18><b>Data Admin</b>\n<color:#b58900><$Users></color>" <<Users>> as dataAdmin
+    ' Users(dataAdmin, "Data Admin", "")
+    Container(consoleApp, "Console App", "MDE SDK", "Encrypt / Decrypt columns")
+    Container(metadata, "Metadata", "YAML", "Column, wrapped CEK, and CMK reference")
+}
+
+Container(dataConsumption, "<size:20><color:#859900>Data Consumption", "SQL AE enabled tools") {
+    Container(sqlClient, "SQL Client", "Driver", "SSMS / Azure Data Studio")
+    rectangle "<size:18><b>Data Consumer</b>\n<color:#b58900><$Users></color>" <<Users>> as dataConsumer
+    ' Users(dataConsumer, "Data Consumer", "")
+    sqlClient <-[#b58900]- dataConsumer
+}
+
+
+dataAdmin -[#b58900]-> consoleApp
+metadata -[#d33682]-> consoleApp
+consoleApp -[#d33682]-> adls
+adls -[#d33682]-> functions
+functions -[#d33682]-> sql
+sql <-[#d33682]- sqlClient
+
+consoleApp -[#b48900]--> kv: "<size:14><color:#b48900>unwrap key"
+kv <--[#b48900]- sqlClient: "<size:14><color:#b48900>unwrap key"
+
+' users -[#b48900]-> aad: "<color:#b48900>Authentication"
+' azsvcLink -[#859900]-> adls: "<color:#859900>Private Link"
+' subFuncInt <-[#2aa198]- functions: "<color:#2aa198>VNET Integration (outbound)"
+
+@end
