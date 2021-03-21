@@ -50,7 +50,7 @@ However, because the column was originally encrypted with the MDE SDK, it can be
 
 ## Wrap up
 
-Hopefully, example illustrates how the MDE SDK can be used to unlock additional encryption scenarios through its built-in support for Parquet as well as additional formats like CSV via its extensibility. Compatibility with data engines like Azure SQL Database allows for sensitivie columns to remain encrypted when moving across systems, thus reducing risk of key and data disclosure throughout.
+Hopefully, this example illustrates how the MDE SDK can be used to unlock additional encryption scenarios through its built-in support for Parquet and, through extensibility, additional formats like CSV. Compatibility with data engines like Azure SQL Database allows for sensitivie columns to remain encrypted when moving across systems, thus reducing risk of key and data disclosure throughout.
 
 [mde-sdk]: https://github.com/Azure/microsoft-data-encryption-sdk
 [sql-ae]: https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=azuresqldb-current
