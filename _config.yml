@@ -48,9 +48,11 @@ minima:
   skin: dark
   date_format: "%b %-d, %Y"
   social_links:
-    twitter: travisnielsen
-    github: travisnielsen
-    linkedin: travisnielsen
+    - { platform: mastodon,  user_url: "https://hachyderm.io/@travisnielsen" }
+    - { platform: github,  user_url: "https://github.com/travisnielsen" }
+    - { platform: twitter, user_url: "https://twitter.com/travisnielsen" }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/travisnielsen/" }
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
