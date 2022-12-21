@@ -9,7 +9,7 @@ About two months ago, Microsoft quietly published a new GitHub repo titled [Micr
 At the heart of the MDE SDK are three NuGet packages: [Microsoft.Data.Encryption.Cryptography][mde-crypto], [Microsoft.Data.Encryption.FileEncryption][mde-file], and [
 Microsoft.Data.Encryption.AzureKeyVaultProvider][mde-keyvault]. In this post, we'll walk through how all three packages can be used to encrypt sensitive columns in a CSV file, push them to Azure SQL Database without decrypting, and view the data from SQL as an authorized user. The following diagram illustrates the flow:
 
-![alt text](/media/2021-03-20/diagram-mde-csv.png "Data protection CSV example")
+[![mde csv diagram](/media/2021-03-20/diagram-mde-csv.png "Data protection CSV example")](/media/2021-03-20/diagram-mde-csv.png)
 
 ## Configuration and Prerequisites
 
