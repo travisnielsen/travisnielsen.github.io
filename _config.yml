@@ -22,7 +22,7 @@ title: nielski on Azure
 author: Travis Nielsen
 email: trn@nielski.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is Travis Nielsen's technical blog covering all things Azure. The opinions and views expressed in this blog are those of the author and do not necessarily state or reflect those of Microsoft.
+  This is Travis Nielsen's technology blog. The opinions and views expressed in this blog are those of the author and do not necessarily state or reflect those of Microsoft.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://nielski.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: travisnielsen
