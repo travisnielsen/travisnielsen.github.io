@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Experimental dark mode theme for Azure PlantUML diagrams"
+title:  "Experimental dark theme for Azure PlantUML diagrams"
 date:   2022-12-21 10:45:00 -0600
 categories: azure plantuml diagrams
 ---
