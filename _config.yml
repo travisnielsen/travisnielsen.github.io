@@ -43,7 +43,7 @@ plugins:
 remote_theme: jekyll/minima
 show_excerpts: true
 
-google_analytics: UA-69721722-1
+google_analytics: G-V792LKSD4M
 
 minima:
   skin: dark
